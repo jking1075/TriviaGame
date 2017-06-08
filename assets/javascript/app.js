@@ -4,10 +4,6 @@
 var correct = 0;
 
 
-
-
-
-
 //============================================================
 //Functions
 
@@ -17,7 +13,6 @@ var q1 = document.triviaQuiz.q1.value;
 var q2 = document.triviaQuiz.q2.value;
 var q3 = document.triviaQuiz.q3.value;
 var q4 = document.triviaQuiz.q4.value;
-
 
 
 	if (q1 == "Monrovia") {
@@ -35,12 +30,12 @@ var q4 = document.triviaQuiz.q4.value;
 }
 console.log(correct);
 countCorrectAnswers();
-//document.getElementById("afterSubmit").style.visibility = "visible";
-document.getElementByd("numberCorrect").innerHTML =  "You got" + correct +" correct!";	
+//("#timeLeft").append("<h2>Time's Up!</h2>");
 }
 
 
 function countCorrectAnswers(){
+
 
 	if (correct == "4") {
 		alert("You are Awesome and got all questions correct!")
@@ -64,10 +59,35 @@ function countCorrectAnswers(){
 
 }
 
+function stop() {
+
+	clearInterval(setTimeout);
+	
+}
 
 
-//============================================================
-//Main Process
+$(document).ready(function() {
+	
+	var number = 15;
 
+	function countdown() {
+		setTimeout (countdown, 1000);
+		$('#box').html("You have " + number + " seconds left.");
+		number --;
 
+		if (number < 0) {
 
+		check();
+	
+		console.log("you have " + correct + " correct");
+		stop();
+
+		}
+
+	}
+	console.log(number);
+
+countdown();
+stop();
+
+});
