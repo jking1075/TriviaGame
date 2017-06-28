@@ -2,7 +2,7 @@
 //============================================================
 //Global Variables
 var correct = 0;
-
+var delay = 0;
 
 //============================================================
 //Functions
@@ -16,8 +16,7 @@ var q4 = document.triviaQuiz.q4.value;
 
 
 	if (q1 == "Monrovia") {
-		correct++;
-		console.log(q1) 
+		correct++; 
 }
 	if (q2 == "9.5 million") {
 		correct++;
@@ -28,7 +27,7 @@ var q4 = document.triviaQuiz.q4.value;
 	if (q4 == "Tanzania") {
 		correct++;
 }
-console.log(correct);
+
 countCorrectAnswers();
 //("#timeLeft").append("<h2>Time's Up!</h2>");
 }
@@ -56,13 +55,14 @@ function countCorrectAnswers(){
 	if (correct == "0") {
 		alert("You did horrible, go back to 8th grade!")
 	}	
-
+	
+	stop()
 }
 
 function stop() {
 
-	clearInterval(setTimeout);
-	
+	clearInterval(delay);
+	console.log(delay);
 }
 
 
@@ -71,23 +71,25 @@ $(document).ready(function() {
 	var number = 15;
 
 	function countdown() {
-		setTimeout (countdown, 1000);
-		$('#box').html("You have " + number + " seconds left.");
-		number --;
-
+		
+		
 		if (number < 0) {
 
-		check();
-	
+
 		console.log("you have " + correct + " correct");
 		stop();
+		check();
+		console.log("you have " + correct + " correct");
 
 		}
+		else { $('#box').html("You have " + number + " seconds left.");
+		number --;
+		delay = setTimeout(countdown, 1000);
+		}
+
 
 	}
-	console.log(number);
 
 countdown();
-stop();
 
 });
